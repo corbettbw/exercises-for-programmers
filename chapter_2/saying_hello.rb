@@ -17,12 +17,10 @@
     # end
 
 # Constraints:
-    # Keep the input, concatenation, and output separate.
+    # Round 1: Keep the input, concatenation, and output separate.
+    # Round 2: No variables
 
 puts "What is your name?"
-name = gets.chomp
+puts "Hello, #{gets.chomp}, nice to meet you!"
 
-greeting = "Hello, #{name}, nice to meet you!"
-
-puts greeting
 
