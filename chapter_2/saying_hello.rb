@@ -19,8 +19,19 @@
 # Constraints:
     # Round 1: Keep the input, concatenation, and output separate.
     # Round 2: No variables
+    # Round 3: Different greetings for different people
+
 
 puts "What is your name?"
-puts "Hello, #{gets.chomp}, nice to meet you!"
+name = gets.chomp.capitalize
 
+greeting_one = "Hello, #{name}, nice to meet you!"
+greeting_two = "What's poppin', #{name}?"
+greeting_three = "Hi diddly ho, #{name}-ino!"
 
+if name[0] <= "J"
+    puts greeting_one
+elsif name[0] > "T"
+    puts greeting_three
+else puts greeting_two
+end
