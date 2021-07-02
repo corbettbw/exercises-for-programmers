@@ -28,10 +28,15 @@
     # use a built-in function of the programming language to determine the length of the string
 
 # Challenges
-    # Round 1
+    # Round 1: enforce correct data input standards.
 
-string = gets.chomp
+string = ""
+
+while string.length < 1
+    puts "Please enter something."
+    string = gets.chomp
+end
+
 length = string.length
-
 
 puts "'#{string}' has #{length} characters.'"
