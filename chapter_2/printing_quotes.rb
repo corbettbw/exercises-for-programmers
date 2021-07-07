@@ -9,13 +9,15 @@
 
 # TDD
     # Inputs: 
-        # These aren't the droids you're looking for.
-        # Obi-Wan Kenobi
+        # "These aren't the droids you're looking for.",    "Hello, world!",        "Twas brillig."
+        # Obi-Wan Kenobi,                                   "Corbett Winningham",   "james randi"
     # Expected Outputs:
         # What is the quote? 
         # Who said it? 
         # Obi-Wan Kenobi says, "These aren't the droids
-            # you're looking for."
+            # you're looking for."                          
+        # Corbett Winningham says, "Hello, world!"
+        # James Randi says, "Twas brillig." 
     # Actual Outputs:
 
 # Pseudocode:
@@ -33,17 +35,47 @@
         # don’t use it for this exercise. Use string concatenation instead.
 
 # Challenges
+    # Modify this program so that instead of prompting for quotes from
+        # the user, you create a structure that holds quotes and their associated
+        # attributions and then display all of the quotes using the format in the
+        # example.
 
-puts "What is the quote?"
-quote = gets.chomp.capitalize
+number_of_quotes = ""
+again = "y"
+list_of_quotes = {}
 
-puts "Who said it?"
-author = gets.chomp
+while number_of_quotes.class != Integer || number_of_quotes <= 0
+    puts "How many quotes would you like to record?"
+    number_of_quotes = gets.chomp.to_i
 
-author = author.split.each { |name| name.capitalize! }.join(" ")
-
-if quote[-1] == "."
-    quote.slice!(".")
+    if number_of_quotes <= 0
+        puts "Please enter a positive, non-zero number."
+    end
 end
 
-puts author + ' says, "' + quote + '".'
+number_of_quotes.times do
+    puts "What is the quote?"
+    quote = gets.chomp.capitalize
+    
+    puts "Who said it?"
+    author = gets.chomp
+    
+    author = author.split.each { |name| name.capitalize! }.join(" ")
+    
+    list_of_quotes[author] = quote
+end
+
+while again == "y"
+    puts "Search for a quote by author, full name"
+    author = gets.chomp.split.each { |name| name.capitalize! }.join(" ")
+    quote = list_of_quotes[author]
+
+    if list_of_quotes[author] == nil
+        puts "Sorry, could not find that author, continue? (y/n)"
+        again = gets.chomp
+    else puts author + ' says, "' + quote + '"'
+        puts "Would you like to go again? (y/n)"
+        again = gets.chomp
+    end
+end
+
