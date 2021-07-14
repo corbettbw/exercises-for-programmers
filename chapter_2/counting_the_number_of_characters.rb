@@ -6,7 +6,6 @@
 # Problem Statement:
     # Create a program that prompts for an input string and displays output that
     # shows the input string and the number of characters the string contains.
-
 # Inputs (nouns):       input string,
 # processes (verbs):    prompts, counts, displays
 # Outputs (nouns):      input string, number of characters   
