@@ -4,6 +4,9 @@
 # processes (verbs):   
 # Outputs (nouns):         
 # TDD
+    # Input:
+    # Expected result:
+    # Actual result
 # Pseudocode:
 # Constraints:
 # Challenges
