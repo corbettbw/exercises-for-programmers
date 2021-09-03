@@ -28,6 +28,11 @@
     # generate a single output statement with linebreaks in the appropriate spots
 
 # Challenges
+    # all terms must be entered in a numerical value
+    
+def checkNumerical?(value)
+    
+end
 
 puts "What is the first number?"
 num1 = gets.chomp.to_f
