@@ -31,14 +31,25 @@
     # Handle situations where the program returns a negative number by
     # stating that the user can already retire.
 
- puts "What is your current age?"
-current_age = gets.chomp.to_i
+def getInteger(prompt)
+    begin
+        puts prompt
+        integer = Integer(gets.chomp)
+    rescue ArgumentError => error
+        puts "Please use numerals"
+        retry
+    end
+    return integer    
+end
 
-puts "At what age would you like to retire?"
-retirement_age = gets.chomp.to_i
-
+current_age = getInteger("What is your current age?")
+retirement_age = getInteger("At what age would you like to retire?")
 years_to_retirement = retirement_age - current_age
 this_year = Time.now.year
 retirement_date = this_year + years_to_retirement
 
-puts "\n You have #{years_to_retirement} years left until you can retire. \n It's #{this_year}, so you can retire in #{retirement_date}."
+if years_to_retirement <= 0
+    puts "You can already retire!"
+else
+    puts "\n You have #{years_to_retirement} years left until you can retire. \n It's #{this_year}, so you can retire in #{retirement_date}."
+end
