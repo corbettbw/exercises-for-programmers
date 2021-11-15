@@ -21,9 +21,25 @@
     # Round 2: No variables
     # Round 3: Different greetings for different people
 
+class String
+    def has_numeral?
+        self.split('').any? { |character| character.to_i.to_s == character}
+    end
+end
 
-puts "What is your name?"
-name = gets.chomp.capitalize
+def getString(prompt)
+    begin
+        puts prompt
+        string = String(gets.chomp.capitalize)
+        raise if string.has_numeral? || string.empty?
+    rescue
+        puts "Please make an entry, and make sure it's actual letters, Elon!"
+        retry
+    end
+    return string
+end
+
+name = getString("What is your name?")
 
 greeting_one = "Hello, #{name}, nice to meet you!"
 greeting_two = "What's poppin', #{name}?"
