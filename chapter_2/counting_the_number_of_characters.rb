@@ -29,13 +29,18 @@
 # Challenges
     # Round 1: enforce correct data input standards.
 
-string = ""
-
-while string.length < 1
-    puts "Please enter something."
-    string = gets.chomp
+def getString(prompt)
+    begin
+        puts prompt
+        string = gets.chomp
+        raise if string.empty?
+    rescue
+        puts "You must enter something to continue"
+        retry
+    end
+    string
 end
 
-length = string.length
+string = getString("Please enter something")
 
-puts "'#{string}' has #{length} characters.'"
+puts "'#{string}' has #{string.length} characters.'"
