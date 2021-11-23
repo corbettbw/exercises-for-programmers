@@ -32,16 +32,28 @@
 
 # Challenges
 
-puts "Please enter a noun, verb, adverb, and adjective."
-puts "noun:"
-noun = gets.downcase.chomp
-puts "verb:"
-verb = gets.downcase.chomp
-puts "adverb:"
-adverb = gets.downcase.chomp
-puts "adjective:"
-adjective = gets.downcase.chomp
+class String
+    def has_numeral?
+        self.split('').any? { |character| character.to_i.to_s == character}
+    end
+end
 
-madLib = "Do you #{verb} your #{adjective} #{noun} #{adverb}? That's hilarious!"
+def getString(prompt)
+    begin
+        puts prompt
+        string = String(gets.chomp)
+        raise if string.has_numeral? || string.empty?
+    rescue
+        puts "Please make an entry, and make sure it's actual letters, Elon!"
+        retry
+    end
+    string
+end
 
-puts madLib
+puts "This is a MadLib. Please enter a noun, verb, adverb, and adjective when prompted."
+noun = getString("Please enter a noun")
+verb = getString("Please enter a verb")
+adverb = getString("Please enter an adverb")
+adjective = getString("Please enter an adjective")
+
+puts "Do you #{verb} your #{adjective} #{noun} #{adverb}? That's hilarious!"
