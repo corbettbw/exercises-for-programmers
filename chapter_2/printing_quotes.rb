@@ -40,42 +40,35 @@
         # attributions and then display all of the quotes using the format in the
         # example.
 
-number_of_quotes = ""
-again = "y"
-list_of_quotes = {}
-
-while number_of_quotes.class != Integer || number_of_quotes <= 0
-    puts "How many quotes would you like to record?"
-    number_of_quotes = gets.chomp.to_i
-
-    if number_of_quotes <= 0
-        puts "Please enter a positive, non-zero number."
+def getInteger(prompt)
+    begin
+        puts prompt
+        integer = Integer(gets.chomp)
+        raise if integer < 0
+    rescue 
+        puts "Please use positive numbers"
+        retry
     end
+    return integer    
 end
 
-number_of_quotes.times do
+def getQuote
     puts "What is the quote?"
-    quote = gets.chomp.capitalize
-    
+    quote = gets.chomp
     puts "Who said it?"
     author = gets.chomp
-    
-    author = author.split.each { |name| name.capitalize! }.join(" ")
-    
-    list_of_quotes[author] = quote
+    return [quote,author]
 end
 
-while again == "y"
-    puts "Search for a quote by author, full name"
-    author = gets.chomp.split.each { |name| name.capitalize! }.join(" ")
-    quote = list_of_quotes[author]
+number_of_quotes = 1
+quote_attribution_array = []
+number_of_quotes = getInteger("How many quotes would you like to add?")
 
-    if list_of_quotes[author] == nil
-        puts "Sorry, could not find that author, continue? (y/n)"
-        again = gets.chomp
-    else puts author + ' says, "' + quote + '"'
-        puts "Would you like to go again? (y/n)"
-        again = gets.chomp
-    end
+while quote_attribution_array.length < number_of_quotes
+    quote_attribution_array.push getQuote
 end
 
+quote_attribution_array.each do |author_and_quote|
+    puts ""
+    puts author_and_quote[1] + " says " + "\"" + author_and_quote[0] + "\""
+end
