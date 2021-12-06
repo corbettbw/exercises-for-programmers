@@ -50,6 +50,14 @@
     # Build a dictionary of conversion rates and prompt for the countries instead of the rates.
     # Wire up your application to an external API[3] that provides the current exchange rates.
 
+require 'json'
+require 'net/http'
+
+url = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json'
+uri = URI(url)
+response = Net::HTTP.get(uri)
+$rates = JSON.parse(response)['usd']
+
 class String
     def has_numeral?
         self.split('').any? { |character| character.to_i.to_s == character}
@@ -66,39 +74,26 @@ def getFloat(prompt)
     end
 end
 
-def getString(prompt)
+def getCountryCode(prompt)
     begin
         puts prompt
-        string = String(gets.chomp.upcase)
-        raise if string.has_numeral? || string.empty?
+        countryCode = String(gets.chomp.downcase)
+        raise if countryCode.has_numeral? || countryCode.empty? || $rates[countryCode] == nil
     rescue
-        puts "Please make an entry, and make sure it's actual letters, Elon!"
+        puts "That country code is not listed, please try again"
         retry
     end
-    return string
+    return countryCode
 end
 
 def convertCurrency(amount_from,currency1,currency2)
-    currencies = {"CAD" => 0.782, "MXN" => 0.047, "USD" => 1.000}
-    amount_to = (amount_from * currencies[currency1]) / currencies[currency2]
+    amount_to = (amount_from * $rates[currency2]) / $rates[currency1]
 end
 
 amount_from = getFloat("Please enter the amount of currency to convert with no symbols ($10 = 10)")
-
-countries = {
-    "Canadian dollar" => "CAD",
-    "Mexican peso" => "MXN",
-    "American dollar" => "USD" 
-}
-
-countries.keys.each {|country| puts "#{country}: #{countries[country]}" }
-
-currency1 = getString("Please enter the three letter abbreviation of the country you wish to convert FROM (pick from available currencies listed above)")
-
-currency2 = getString("Please enter the three letter abbreviation of the country you wish to convert TO")
-
+currency1 = getCountryCode("Please enter the letter abbreviation of the country you wish to convert FROM")
+currency2 = getCountryCode("Please enter the letter abbreviation of the country you wish to convert TO")
 amount_to = convertCurrency(amount_from,currency1,currency2)
 
-puts "%#.2f #{countries.key(currency1)}(s) is equal to %#.2f #{countries.key(currency2)}(s)" % [amount_from,amount_to]
-
+puts "%#.2f #{currency1}(s) is equal to %#.2f #{currency2}(s)" % [amount_from,amount_to]
 
