@@ -50,6 +50,11 @@
     # Build a dictionary of conversion rates and prompt for the countries instead of the rates.
     # Wire up your application to an external API[3] that provides the current exchange rates.
 
+class String
+    def has_numeral?
+        self.split('').any? { |character| character.to_i.to_s == character}
+    end
+end
 
 def getFloat(prompt)
     begin
@@ -61,11 +66,39 @@ def getFloat(prompt)
     end
 end
 
-amount_from = getFloat("How many euros are you exchanging?")
-rate_from = getFloat("What is the exchange rate?")
+def getString(prompt)
+    begin
+        puts prompt
+        string = String(gets.chomp.upcase)
+        raise if string.has_numeral? || string.empty?
+    rescue
+        puts "Please make an entry, and make sure it's actual letters, Elon!"
+        retry
+    end
+    return string
+end
 
-amount_to = (amount_from * rate_from)
+def convertCurrency(amount_from,currency1,currency2)
+    currencies = {"CAD" => 0.782, "MXN" => 0.047, "USD" => 1.000}
+    amount_to = (amount_from * currencies[currency1]) / currencies[currency2]
+end
 
-puts "%#.2f #{amount_from == 1 ? "Euro" : "Euros"} at an exchange rate of %#.2f is equal to %#.2f U.S. #{amount_to == 1 ? "dollar" : "dollars"}." % [amount_from,rate_from,amount_to]
+amount_from = getFloat("Please enter the amount of currency to convert with no symbols ($10 = 10)")
+
+countries = {
+    "Canadian dollar" => "CAD",
+    "Mexican peso" => "MXN",
+    "American dollar" => "USD" 
+}
+
+countries.keys.each {|country| puts "#{country}: #{countries[country]}" }
+
+currency1 = getString("Please enter the three letter abbreviation of the country you wish to convert FROM (pick from available currencies listed above)")
+
+currency2 = getString("Please enter the three letter abbreviation of the country you wish to convert TO")
+
+amount_to = convertCurrency(amount_from,currency1,currency2)
+
+puts "%#.2f #{countries.key(currency1)}(s) is equal to %#.2f #{countries.key(currency2)}(s)" % [amount_from,amount_to]
 
 
