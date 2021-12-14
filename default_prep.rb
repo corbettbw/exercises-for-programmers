@@ -1,4 +1,4 @@
-# Gather Info
+# Gather Info:
 # Problem Statement:
 # Inputs (nouns):      
 # processes (verbs):   
@@ -9,4 +9,4 @@
     # Actual result
 # Pseudocode:
 # Constraints:
-# Challenges
+# Challenges:
