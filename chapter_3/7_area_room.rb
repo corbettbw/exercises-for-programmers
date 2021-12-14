@@ -47,22 +47,9 @@
     # Implement this program as a GUI program that automatically updates
     # the values when any value changes
 
-def getInteger(prompt)
-    begin
-        puts prompt
-        integer = Integer(gets.chomp)
-    rescue ArgumentError => error
-        puts "Please use numerals"
-        retry
-    end
-    return integer    
-end
+require '../useful_methods.rb'
 
-units = ""
-while !(units == "feet" || units == "meters")
-    puts "Please enter 'feet' or 'meters"
-    units = gets.chomp.downcase
-end
+units = chooseOne("Please enter 'feet' or 'meters'",["feet","meters"])
 
 conversion_rate = units == "feet" ? 0.09290304 : 10.76391
 

@@ -36,3 +36,16 @@ def getString(prompt)
     end
     return string
 end
+
+def chooseOne(prompt,optionsArray)
+    begin
+        puts prompt
+        choice = gets.chomp.downcase
+        raise if (optionsArray.include? choice) == false
+    rescue
+        puts "Please enter one of the options:"
+        optionsArray.each { |option| puts option }
+        retry
+    end
+    return choice
+end
