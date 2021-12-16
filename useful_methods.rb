@@ -37,15 +37,19 @@ def getString(prompt)
     return string
 end
 
+
 def chooseOne(prompt,optionsArray)
     begin
         puts prompt
-        choice = gets.chomp.downcase
-        raise if (optionsArray.include? choice) == false
+        choice = gets.chomp
+        is_numeral = choice.to_i.to_s == choice ? true : false
+
+        raise if (optionsArray.include? choice) == false && ( (optionsArray.include? choice.to_i) == false || is_numeral == false )
     rescue
-        puts "Please enter one of the options:"
+        puts "\nPlease enter* one of the options:"
         optionsArray.each { |option| puts option }
+        puts "\n**** Entries are case sensitive; make sure you enter your option exactly as indicated ***"
         retry
     end
-    return choice
+    return is_numeral == true ? choice.to_i : choice
 end

@@ -38,24 +38,34 @@
 
 
 require 'active_support/inflector'
+require '../useful_methods.rb'
 
-def getInteger(prompt)
-    begin
-        puts prompt
-        integer = Integer(gets.chomp)
-    rescue ArgumentError => error
-        puts "Please use numerals"
-        retry
+conversion_rate = (1 / 350.0)
+
+def calculateArea(shape)
+    if shape == "rectangle"
+        length = getInteger("length")
+        width = getInteger("width")
+        area = length * width
+    elsif shape == "circle"
+        radius = getInteger("radius")
+        area = Math::PI * radius ** 2
+    elsif shape == "triangle"
+        base = getInteger("base")
+        height = getInteger("height")
+        area = 0.5 * base * height
+    elsif shape == "L shape"
+        longest_sideA = getInteger("longest side")
+        longest_sideB = getInteger("next longest side")
+        cutaway_sideA = getInteger("vertical stem inside the L bend")
+        cutaway_sideB = getInteger("horizontal side inside the L bend")
+        area = longest_sideA * longest_sideB - cutaway_sideA * cutaway_sideB
     end
-    return integer    
 end
 
-conversion_rate = 350.0
-length = getInteger("length")
-width = getInteger("width")
-
-area = length * width
-gallons = (area / conversion_rate).ceil
+shape = chooseOne("What shape is the room you'd like to paint?",["rectangle","circle","triangle","L shape"])
+area = calculateArea(shape)
+gallons = (area * conversion_rate).ceil
 
 puts "You will need to purchase #{gallons} #{"gallon".pluralize(gallons)} of paint to cover #{area} square #{area == 1? "foot" : "feet"}." 
     
