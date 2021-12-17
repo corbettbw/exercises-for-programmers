@@ -1,0 +1,247 @@
+Algeria	18	
+Angola	18	
+Angolia		
+Benin		
+Botswana	18	
+Burkina Faso		
+Burundi		
+Cabo Verde		
+Cameroon	16	
+Central African Republic		
+Chad		
+Comoros		
+Congo		
+Congo, Democratic Republic Of The		
+Djibouti		
+Egypt	18	
+Equatorial Guinea		
+Eritrea		
+Eswatini		
+Ethiopia		
+Gabon		
+Gambia		
+Gambia, The		
+Ghana	21	
+Guinea		
+Guinea-Bissau		
+Kenya	18	
+Lesotho	18	
+Liberia		
+Libya		
+Madagascar		
+Malawi		
+Mali		
+Mauritania		
+Mauritius	18	
+Morocco	18	
+Mozambique	18	
+Namibia	18	
+Niger		
+Nigeria		
+Republic Of The Congo		
+Reunion Island		
+Rwanda		
+São Tomé & Príncipe		
+Sao Tome and Principe		
+Senegal	18	
+Seychelles		
+Somalia		
+South Africa	18
+South Sudan		
+Sudan		
+Swaziland	18	
+Tanzania	18	
+Togo		
+Tunisia	18	
+Uganda		
+Zambia	16	
+Zimbabwe	16
+
+Anguilla	18	
+Antigua	18	
+Antigua & Barbuda		
+Antigua and Barbuda		
+Aruba	18	
+Bahamas	17	
+Bahamas, The		
+Barbados		
+Bonaire	18	
+Cayman Islands	18	
+Cuba		
+Curacao	18	
+Dominica	18	
+Dominican Republic	16	
+Grenada	18	
+Haiti	18	
+Jamaica	18	
+Martinique	18	
+Puerto Rico	18
+Reunion		
+Saint Kitts & Nevis		
+Saint Lucia	18	
+Saint Vincent & The Grenadines		
+Saint Vincent and the Grenadines		
+St Lucia	18	
+St Maarten	18	
+St Vincent and the Grenadines	18	
+Trinidad & Tobago		
+Trinidad and Tobago	17
+
+Belize	18	
+Costa Rica	18	
+CostaRica		
+El Salvador	15	
+Guatemala	16
+Honduras	18	
+Nicaragua	18	
+Panama	16
+
+China	18	
+Hong Kong	18
+Japan	18	
+Korea		
+Mongolia		
+North Korea		
+South Korea	18	
+Taiwan	18
+
+Austria	18	
+Belgium	18	
+Bosnia & Herzegovina		
+Bulgaria	18	
+Canary Islands	18	
+Croatia	18	
+Cyprus	17	
+Czech Republic	18	
+Czechia		
+Denmark	18	
+Estonia	18	
+Faroe Islands	18	
+Finland	18	
+France	18	
+Georgia	18	
+Germany	18	
+Gibraltar	17	
+Greece	18	
+Holland	18
+Hungary	17	
+Ibiza	18	
+Ibiza	18	
+Iceland	18	
+Ireland	17	
+Italy	18	
+Lanzarote	18	
+Lanzarote		
+Latvia	18	
+Liechtenstein	18	
+Lithuania	18	
+Luxembourg	18	
+Mallorca		
+Mallorca	18	
+Malta	18	
+Monaco		
+Netherlands	18	
+Northern Ireland	17	
+Norway	18	
+Poland	18	
+Portugal	18	
+Romania	18	
+Russian Federation		
+San Marino		
+Scotland	17	
+Sicily	18	
+Slovakia	18	
+Slovenia	18	
+Spain	18	
+Sweden	18
+Switzerland	18	
+Tenerife	18	
+Tenerife		
+UK	17	
+Vatican City		
+Wales	17
+
+Bahrain	18	
+Iran		
+Iraq		
+Israel	17	
+Jordan	18	
+Kuwait	18	
+Lebanon	18	
+Oman	18	
+Palestine		
+Qatar	18	
+Saudi Arabia	18
+Syria	18	
+UAE	18	
+United Arab Emirates		
+Yemen	18
+
+Canada	16	
+Mexico	18	
+USA		16
+
+Australia	16	
+Fiji	17	
+Guam	15
+Kiribati		
+Marshall Islands		
+Nauru		
+New Caledonia	17	
+New Zealand	17.5
+Palau		
+Papua New Guinea		
+Samoa		
+Solomon Islands		
+Tonga		
+Tuvalu		
+Vanuatu
+
+Albania	18	
+Andorra	18	
+Azerbaijan	18	
+Belarus	18	
+Bosnia and Herzegovina	18	
+Guernsey	17	
+Isle Of Man	16	
+Jersey	17	
+Kosovo	17	
+Macedonia	18	
+Moldova	18	
+Montenegro	18	
+Russia	18	
+Serbia	18	
+Turkey	18	
+Ukraine	18
+
+Argentina	17	
+Bolivia	18	
+Brazil	18	
+Chile	18
+Colombia	16	
+Ecuador	18	
+Guyana		
+Paraguay	18	
+Peru	18	
+Suriname		
+Uruguay	18	
+Venezuela	18
+
+Afghanistan		
+Bangladesh	18	
+Bhutan		
+India	18	
+Maldives		
+Nepal		
+Pakistan	18	
+Sri Lanka	18
+
+Cambodia	18	
+Indonesia	17	
+Laos	18	
+Malaysia	17	
+Philippines	18
+Singapore	18	
+Thailand	18	
+Viet Nam		
+Vietnam
