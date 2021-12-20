@@ -46,7 +46,7 @@ require '../useful_methods.rb'
 driving_age_by_country = []
 legal_driving_countries = ""
 
-File.open("../sample_data.txt","r") do |file|
+File.open("../driving_ages_by_country.txt","r") do |file|
     file.each_line do |line|
         country = line.split(' ')
         if country.length > 0 && country.last.to_i.to_s != country.last
