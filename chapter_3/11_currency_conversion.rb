@@ -50,50 +50,23 @@
     # Build a dictionary of conversion rates and prompt for the countries instead of the rates.
     # Wire up your application to an external API[3] that provides the current exchange rates.
 
+require '../useful_methods.rb'
 require 'json'
 require 'net/http'
 
 url = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json'
 uri = URI(url)
 response = Net::HTTP.get(uri)
-$rates = JSON.parse(response)['usd']
+rates = JSON.parse(response)['usd']
 
-class String
-    def has_numeral?
-        self.split('').any? { |character| character.to_i.to_s == character}
-    end
-end
-
-def getFloat(prompt)
-    begin
-        puts prompt
-        Float(gets.chomp)
-    rescue ArgumentError => error
-        puts "Please use numerals"
-        retry
-    end
-end
-
-def getCountryCode(prompt)
-    begin
-        puts prompt
-        countryCode = String(gets.chomp.downcase)
-        raise if countryCode.has_numeral? || countryCode.empty? || $rates[countryCode] == nil
-    rescue
-        puts "That country code is not listed, please try again"
-        retry
-    end
-    return countryCode
-end
-
-def convertCurrency(amount_from,currency1,currency2)
-    amount_to = (amount_from * $rates[currency2]) / $rates[currency1]
+def convertCurrency(amount_from,rates,currency1,currency2)
+    amount_to = (amount_from * rates[currency2]) / rates[currency1]
 end
 
 amount_from = getFloat("Please enter the amount of currency to convert with no symbols ($10 = 10)")
-currency1 = getCountryCode("Please enter the letter abbreviation of the country you wish to convert FROM")
-currency2 = getCountryCode("Please enter the letter abbreviation of the country you wish to convert TO")
-amount_to = convertCurrency(amount_from,currency1,currency2)
+currency1 = chooseOne("Please enter the letter abbreviation of the country you wish to convert FROM",rates.keys)
+currency2 = chooseOne("Please enter the letter abbreviation of the country you wish to convert TO",rates.keys)
+amount_to = convertCurrency(amount_from,rates,currency1,currency2)
 
 puts "%#.2f #{currency1}(s) is equal to %#.2f #{currency2}(s)" % [amount_from,amount_to]
 
