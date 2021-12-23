@@ -71,7 +71,7 @@ def convertTempUnits(unit_to,unit_from,measurement)
 end
 
 unit_from = chooseOne("Pick the unit you wish to convert from",["C","F","K"])
-unit_to = chooseOne("Pick the unit you wish to convert to",(["C","F","K"]-[unit_from]))
+unit_to = chooseOne("Pick the unit you wish to convert to",["C","F","K"]-[unit_from])
 measurement = getFloat("Please enter the temperature you wish to convert")
 converted_temp = convertTempUnits(unit_to,unit_from,measurement)
 
