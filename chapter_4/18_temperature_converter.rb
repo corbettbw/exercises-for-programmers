@@ -60,16 +60,19 @@
 
 require '../useful_methods.rb'
 
-def celsiusToFahrenheit(starting_temp)
-    fahrenheit = (starting_temp * 9/5) + 32
+def convertTempUnits(unit_to,unit_from,measurement)
+    if unit_to == "C"
+        celsius = unit_from == "F" ? (measurement - 32) * 5/9 : celsius = measurement - 273.15
+    elsif unit_to == "F"
+        fahrenheit = unit_from == "C" ? (measurement * 9/5) + 32 : ((measurement - 273.15) * 9/5) + 32
+    elsif unit_to == "K"
+        kelvin = unit_from == "F" ? ((measurement - 32) * 5/9) + 273.15 : measurement + 273.15
+    end 
 end
 
-def fahrenheitToCelsius(starting_temp)
-    celsius = (starting_temp - 32) * 5/9
-end
-    
-unit_to = chooseOne("Pick the unit you wish to convert to",["C","F"])
-starting_temp = getFloat("Please enter the temperature in #{unit_to == "C" ? "Fahrenheit" : "Celsius"}")
-converted_temp = unit_to == "F" ? celsiusToFahrenheit(starting_temp) : fahrenheitToCelsius(starting_temp)
+unit_from = chooseOne("Pick the unit you wish to convert from",["C","F","K"])
+unit_to = chooseOne("Pick the unit you wish to convert to",(["C","F","K"]-[unit_from]))
+measurement = getFloat("Please enter the temperature you wish to convert")
+converted_temp = convertTempUnits(unit_to,unit_from,measurement)
 
 puts "The temperature in #{unit_to} is #{converted_temp}"
