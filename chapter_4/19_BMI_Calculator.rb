@@ -47,10 +47,11 @@
     
 require '../useful_methods.rb'
 
-weight = getFloat("What is your weight in pounds?")
-height = getFloat("What is your height in inches?")
+units = chooseOne("Pick Imperial or Metric",["Imperial","Metric"])
+mass = getFloat("What is your #{units == "Imperial" ? "weight in pounds" : "mass in kilograms"}?")
+height = getFloat("What is your height in #{units == "Imperial" ? "inches" : "centimeters"}?")
 
-BMI = (weight/(height ** 2)) * 703
+BMI = units == "Imperial" ? (mass/(height ** 2)) * 703 : (mass / height / height) * 10000
 
 puts "Your BMI is #{BMI}." 
 puts BMI > 18.5 && BMI < 25 ? "You are within the ideal range." : "You are outside of the accepted range, please see a doctor"
