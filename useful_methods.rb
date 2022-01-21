@@ -2,6 +2,10 @@ class String
     def has_numeral?
         self.split('').any? { |character| character.to_i.to_s == character }
     end
+
+    def capitalize_words
+        self.split.map { |word| word.capitalize }.join(" ")
+    end
 end
 
 def getFloat(prompt)
