@@ -102,7 +102,7 @@ state = chooseOne("What state do you live in?",["Alabama",
 "West Virginia",
 "Wisconsin",
 "Wyoming"
-    ])
+])
 
 if state == "Wisconsin"
     county = getString("What county do you live in?").capitalize_words
