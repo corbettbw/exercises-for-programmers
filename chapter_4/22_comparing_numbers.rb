@@ -53,16 +53,21 @@ def findLarger(a,b)
     return larger
 end
 
-first = getInteger("Enter the first number")
-second = getInteger("Enter the second number")
-third = getInteger("Enter the third number")
+how_many_numbers = getInteger("How many numbers would you like to compare?")
+numbers = []
 
-if first == second && second == third
-    puts "All numbers are the same! (#{first})"
-else
-    larger = findLarger(first,second)
-    puts findLarger(larger,third)
+how_many_numbers.times do |n| 
+    numbers.push getInteger("Please enter a whole number")
 end
+
+larger = numbers[0]
+
+numbers.each do |number|
+    larger = findLarger(larger,number)
+end
+
+puts "The largest number is #{larger}"
+
 
 
 
