@@ -42,34 +42,43 @@
 
 require '../useful_methods.rb'
 
-month_number = chooseOne("Please enter the number of the month",[1,2,3,4,5,6,7,8,9,10,11,12])
+language = chooseOne("Please slect your langauge (Por favor, elige tu idioma)",["English", "Español"])
 
-case month_number
-when 1
-    month = "January"
-when 2
-    month = "February"
-when 3
-    month = "March"
-when 4
-    month = "April"
-when 5
-    month = "May"
-when 6
-    month = "June"
-when 7
-    month = "July"
-when 8
-    month = "August"
-when 9
-    month = "September"
-when 10
-    month = "October"
-when 11
-    month = "November"
-when 12
-    month = "December"
-else puts "Please enter a number between 1 and 12"
+if language == "English"
+    month_number_prompt = "Please enter the number of the month"
+    response = "The name of the month is "
+    month_hash = {
+        1=>"January",
+        2=>"February",
+        3=>"March",
+        4=>"April",
+        5=>"May",
+        6=>"June",
+        7=>"July",
+        8=>"August",
+        9=>"September",
+        10=>"October",
+        11=>"November",
+        12=>"December"
+    }
+elsif language == "Español"
+    month_number_prompt = "Por favor, elige el numero del mes"
+    response = "El mes se llama "
+    month_hash = {
+        1=>"enero",
+        2=>"febrero",
+        3=>"marzo",
+        4=>"abril",
+        5=>"Mayo",
+        6=>"Junio",
+        7=>"Julio",
+        8=>"agosto",
+        9=>"Septiembre",
+        10=>"Octubre",
+        11=>"Noviembre",
+        12=>"Diciembre"
+    }
 end
 
-puts "The name of the month is #{month}"
+month_number = chooseOne(month_number_prompt,[1,2,3,4,5,6,7,8,9,10,11,12])
+puts response + month_hash[month_number]
