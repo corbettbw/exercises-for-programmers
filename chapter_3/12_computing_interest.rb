@@ -34,20 +34,17 @@
     # Ensure that the output is formatted as money.
 # Challenges
 
-def getFloat(prompt)
-    begin
-        puts prompt
-        Float(gets.chomp)
-    rescue ArgumentError => error
-        puts "Please use numerals"
-        retry
+require '../useful_methods.rb'
+
+def calculateSimpleInterest()
+    principal = getFloat("Enter the principal")
+    interest = getFloat("Enter the percentage rate of interest (5% should be 5)")
+    time = getFloat("Enter the time in number of years")
+
+    1.upto(time) do |time|
+        amount_accrued = principal * (1 + (interest / 100) * time)
+        puts "After %#.2f years at %#.2f%%, the investment will be worth $%#.2f." % [time,interest,amount_accrued]
     end
 end
 
-principal = getFloat("Enter the principal")
-interest = getFloat("Enter the percentage rate of interest (5% should be 5)")
-time = getFloat("Enter the time in number of years")
-
-amount_accrued = principal * (1 + (interest / 100) * time)
-
-puts "After %#.2f years at %#.2f%%, the investment will be worth $%#.2f." % [time,interest,amount_accrued]
+puts calculateSimpleInterest()

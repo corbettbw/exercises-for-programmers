@@ -64,18 +64,7 @@
     # Revise the program to ensure that prices and quantities are entered as numeric values. Don’t allow the user to        proceed if the value entered is not numeric.
     # Alter the program so that an indeterminate number of items can be entered. The tax and total are computed when        there are no more items to be entered.
 
-def getInteger(prompt)
-    begin
-        puts prompt
-        integer = Integer(gets.chomp)
-    rescue ArgumentError => error
-        puts "Please use numerals"
-        retry
-    end
-    return integer    
-end
-
-"Enter the quantity of item 1:"
+require '../useful_methods.rb'
 
 item_1_price = getInteger("Enter the price of item 1:")
 quantity_1 = getInteger("Enter the quantity of item 1:")

@@ -29,15 +29,15 @@
 
 # Challenges
     # all terms must be entered in a numerical value
-    
-def checkNumerical?(value)
-    
-end
 
-puts "What is the first number?"
-num1 = gets.chomp.to_f
+require '../useful_methods.rb'
 
-puts "What is the second number?"
-num2 = gets.chomp.to_f
+num1 = getFloat("What is the first number?")
+num2 = getFloat("What is the second number?")
 
-puts "#{num1} + #{num2} = #{num1 + num2} \n#{num1} - #{num2} = #{num1 - num2} \n#{num1} * #{num2} = #{num1 * num2} \n#{num1} / #{num2} = #{num1 / num2}"
+sum         = num1 + num2
+difference  = num1 - num2
+product     = num1 * num2
+quotient    = num1 / num2
+
+puts "#{num1} + #{num2} = #{sum} \n#{num1} - #{num2} = #{difference} \n#{num1} * #{num2} = #{product} \n#{num1} / #{num2} = #{quotient}"

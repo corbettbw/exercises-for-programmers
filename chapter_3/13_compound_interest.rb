@@ -46,54 +46,32 @@
 
     # Implement this program as a GUI app that automatically updates the values when any value changes.
 
-def getFloat(prompt)
-    begin
-        puts prompt
-        Float(gets.chomp)
-    rescue ArgumentError => error
-        puts "Please use numerals"
-        retry
-    end
+require '../useful_methods.rb'
+
+def calculateAccrued(principal,rate_of_interest,time,number_of_compound_periods)
+    accrued = principal * (1 + rate_of_interest * 0.01 / number_of_compound_periods) ** (number_of_compound_periods * time)
 end
 
-def thisOrThat(prompt,this,that)
-    puts prompt
-    begin
-        thisOrThat = gets.chomp
-        raise unless thisOrThat == this || thisOrThat == that
-    rescue
-        puts "Please enter \"#{this}\" or \"#{that}\"."
-        retry
-    end
-    thisOrThat
+def calculatePrincipal(accrued,rate_of_interest,time,number_of_compound_periods)
+    principal = accrued * (1 / (1 + rate_of_interest * 0.01 / number_of_compound_periods) ** (number_of_compound_periods * time))
 end
 
-def calculateAccruedOrPrincipal(thisOrThat)
-    rate_of_interest = getFloat("Enter the percentage rate of interest (5% should be 5)")
-    time = getFloat("Enter the time in number of years")
-    number_of_compound_periods = getFloat("Enter the number of times the interest is compounded per year")
-    
-    if thisOrThat == "A"
-        principal = getFloat("Enter how much you're starting with")
-        accrued = principal * (1 + rate_of_interest * 0.01 / number_of_compound_periods) ** (number_of_compound_periods * time)
+finalValue = chooseOne("Type \"A\" to calculate an Accrued amount starting with a set principal, or \"P\" to calculate your starting Principal, given a savings goal.",["A","P"])
 
-       return [principal,rate_of_interest,time,number_of_compound_periods,accrued,thisOrThat]
-    else 
-        accrued = getFloat("Enter the amount that you would like to accrue over time.")
-        principal = accrued * (1 / (1 + rate_of_interest * 0.01 / number_of_compound_periods) ** (number_of_compound_periods * time))
+knownValue = finalValue == "A" ? getFloat("Enter how much you're starting with") : getFloat("Enter the amount that you would like to accrue over time.")
 
-       return [accrued,rate_of_interest,time,number_of_compound_periods,principal,thisOrThat]
-    end
-end
+rate_of_interest = getFloat("Enter the percentage rate of interest (5% should be 5)")
+time = getFloat("Enter the time in number of years")
+number_of_compound_periods = getFloat("Enter the number of times the interest is compounded per year")
 
-thisOrThat = thisOrThat("Type \"A\" to calculate an Accrued amount starting with a set principal, or \"P\" to calculate your starting Principal, given a savings goal.","A","P")
+if finalValue == "A"
+    accrued = calculateAccrued(knownValue,rate_of_interest,time,number_of_compound_periods)
 
-importantInfoArray = calculateAccruedOrPrincipal(thisOrThat)
-
-if importantInfoArray.last == "A"
-    puts "$%#.2f invested at %#.2f%% for %#.2f #{importantInfoArray[2] == 1 ? "year" : "years"} compounded %#.2f times per year is $%#.2f." % importantInfoArray
+    puts "$%#.2f invested at %#.2f%% for %#.2f #{time == 1 ? "year" : "years"} compounded %#.2f times per year is $%#.2f." % [knownValue,rate_of_interest,time,number_of_compound_periods,accrued]
 else
-    puts "In order to get $%#.2f with an interest of %#.2f%% over %#.2f #{importantInfoArray[2] == 1 ? "year" : "years"} compounded %#.2f #{importantInfoArray[3] == 1 ? "time" : "times"} per year, you need to invest $%#.2f" % importantInfoArray
+    principal = calculatePrincipal(knownValue,rate_of_interest,time,number_of_compound_periods)
+
+    puts "In order to get $%#.2f with an interest of %#.2f%% over %#.2f #{time == 1 ? "year" : "years"} compounded %#.2f times per year, you need to invest $%#.2f" % [knownValue,rate_of_interest,time,number_of_compound_periods,principal]
 end
 
 
