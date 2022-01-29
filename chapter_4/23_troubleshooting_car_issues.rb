@@ -34,40 +34,66 @@
 
 require '../useful_methods.rb'
 
-answerChain = chooseOne("Is the car silent when you turn the key?", ["y","n"])
-if answerChain == "y"
-    answerChain += chooseOne("Are the battery terminals corroded?",["y","n"]) # answerChain = "yy" or "yn"
-    if answerChain == "yy"
-        puts "Clean terminals and try starting again"
-    else
-        puts "Replace cables and try again"
+class DiagnosticTree < Array
+    def initialize(question,yes_answer,no_answer)
+        self.push question
+        self.push yes_answer
+        self.push no_answer
     end
-else
-    answerChain += chooseOne("Does the car make a clicking noise?",["y","n"]) # answerChain = "ny" or "nn"
-    if answerChain == "ny"
-        puts "Replace the battery."
-    else
-        answerChain += chooseOne("Does the car crank up but fail to start?",["y","n"]) # answerChain = "nny" or "nnn"
-        if answerChain == "nny"
-            puts "Check spark plug connections"
-        else
-            answerChain += chooseOne("Does the engine start and then die?", ["y","n"]) # answerChain = "nnny" or "nnnn"
-            if answerChain == "nnnn"
-                puts "Get it in for service"
-            else
-                answerChain += chooseOne("Does your car have fuel injection?",["y","n"]) # answerChain = "nnnyn"
-                if answerChain == "nnnyn"
-                    puts "Check to ensure the choke is opening and closing."
-                else 
-                    puts "get it in for service"
-                end
-            end
-        end
+    def question
+        self[0]
+    end
+    def yes_answer
+        self[1]
+    end
+    def no_answer
+        self[2]
     end
 end
 
 
+def diagnose(tree)
+    if tree.class != DiagnosticTree
+        puts tree
+    else 
+        if chooseOne(tree.question,["y","n"]) == "y"
+            diagnose(tree.yes_answer)
+        else
+            diagnose(tree.no_answer)
+        end
+    end
+end
 
+diagnosticTree = DiagnosticTree.new(
+    "Is the car silent when you turn the key?",                             # question
+    DiagnosticTree.new(                                                     # yes_answer
+        "Are the battery terminals corroded?",                              # quesition
+        "Clean terminals and try starting again",                           # yes_answer
+        "Replace cables and try again"                                      # no_answer
+    ),
+    DiagnosticTree.new(                                                     # no_answer
 
+        "Does the car make a clicking noise?",                              # question
+        "Replace the battery.",                                             # yes_answer
+        DiagnosticTree.new(                                                 # no_answer
+
+            "Does the car crank up but fail to start?",                     # question
+            "Check spark plug connections",                                 # yes_answer
+            DiagnosticTree.new(                                             # no_answer
+
+                "Does the engine start and then die?",                      # question
+                DiagnosticTree.new(                                         # yes_answer
+
+                    "Does your car have fuel injection?",                   # question
+                    "Get it in for service",                                # yes_answer
+                    "Check to ensure the choke is opening and closing."     # no_answer
+                ),
+                "Get it in for service"                                     # no_answer
+            )
+        )
+    )
+)
+
+diagnose(diagnosticTree)
 
 
