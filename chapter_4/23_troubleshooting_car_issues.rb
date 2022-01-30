@@ -34,36 +34,6 @@
 
 require '../useful_methods.rb'
 
-class DiagnosticTree < Array
-    def initialize(question,yes_answer,no_answer)
-        self.push question
-        self.push yes_answer
-        self.push no_answer
-    end
-    def question
-        self[0]
-    end
-    def yes_answer
-        self[1]
-    end
-    def no_answer
-        self[2]
-    end
-end
-
-
-def diagnose(tree)
-    if tree.class != DiagnosticTree
-        puts tree
-    else 
-        if chooseOne(tree.question,["y","n"]) == "y"
-            diagnose(tree.yes_answer)
-        else
-            diagnose(tree.no_answer)
-        end
-    end
-end
-
 diagnosticTree = DiagnosticTree.new(
     "Is the car silent when you turn the key?",                             # question
     DiagnosticTree.new(                                                     # yes_answer
