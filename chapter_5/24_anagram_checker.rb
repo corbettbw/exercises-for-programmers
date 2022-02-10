@@ -56,7 +56,7 @@ require '../useful_methods.rb'
 class String
     def isAnagram?(string2)
         if self.length != string2.length
-            return false
+            false
         else
             string2.split('').permutation.each do |anagram| 
                 if anagram.join('') == self
@@ -67,11 +67,27 @@ class String
     end
 end
 
+class String
+    def effectiveIsAnagram?(string2)
+        array = self.split('').sort
+        brray = string2.split('').sort
+        if array == brray
+            return true
+        else
+            false
+        end
+    end
+end
+
 string1 = getString("Enter the first string:").downcase
 string2 = getString("Enter the second string:").downcase
 
-if string1.isAnagram?(string2) == true
-    puts "#{string1} and #{string2} are anagrams"
-else
-    puts "#{string1} and #{string2} are NOT anagrams"
-end
+# puts string1.isAnagram?(string2)
+
+puts string1.effectiveIsAnagram?(string2)
+
+# if string1.isAnagram?(string2) == true
+#     puts "#{string1} and #{string2} are anagrams"
+# else
+#     puts "#{string1} and #{string2} are NOT anagrams"
+# end
