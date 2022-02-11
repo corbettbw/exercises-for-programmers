@@ -69,6 +69,8 @@ def wordle_input(word,greenLetters)
     word.split('').each.with_index do |letter,index|
         if greenLetters[index].empty?
             letters.push [letter,chooseOne(letter,["gray","yellow","green"])]
+        else
+            letters.push [letter, "green"]
         end
     end
     letters

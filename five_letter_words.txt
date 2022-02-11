@@ -1,6 +1,4 @@
-aapas
 aargh
-aasia
 abaca
 aback
 abaft
@@ -9664,10 +9662,5 @@ zuppa
 zuñis
 zyban
 zzzzz
-éclat
-école
-épées
-étude
-‘we’s
-’nuff
-“we”s
+eclat
+etude

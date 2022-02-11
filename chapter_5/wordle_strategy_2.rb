@@ -23,7 +23,7 @@ while greenLetters.join.length < 5 && guesses.keys.length < 6
     end
 
     word = getString("Please enter your guess").upcase
-    guesses[word] = wordle_input(word,greenLetters)
+    guesses[word] = wordle_input(word,greenLetters) # Returns a nested array of letters and colors:[["a","gray"],["b","yellow"],                                                 ["c","green"]]
     remove_previous_guesses(guesses,wordsAndScores)
     greenLetters = filter(guesses,wordsAndScores)
     wordsAndScores.values.sort.last
