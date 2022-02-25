@@ -3,64 +3,49 @@ require '../useful_methods.rb'
 # Takes a word, returns a value based on the frequency of the letters' use overall
 def freq_score(word)
     split_word = word.upcase.split('')
-    freq_score = 0
+    freq_score = 0.0
+    score_hash = {
+        "A" => 8.4966,
+        "B" => 2.0720,
+        "C" => 4.5388,
+        "D" => 3.3844,
+        "E" => 11.160,
+        "F" => 1.8121,
+        "G" => 2.4705,
+        "H" => 3.0034,
+        "I" => 7.5448,
+        "J" => 0.1965,
+        "K" => 1.1016,
+        "L" => 5.4893,
+        "M" => 3.0129,
+        "N" => 6.6544,
+        "O" => 7.1635,
+        "P" => 3.1671,
+        "Q" => 0.1962,
+        "R" => 7.5809,
+        "S" => 5.7351,
+        "T" => 6.9509,
+        "U" => 3.6308,
+        "V" => 1.0074,
+        "W" => 1.2899,
+        "X" => 0.2902,
+        "Y" => 1.7779,
+        "Z" => 0.2722
+    }
     split_word.each do |letter|
-        case letter
-        when letter = "A"
-            freq_score += 8.4966
-        when letter = "B"
-            freq_score += 2.0720
-        when letter = "C"
-            freq_score += 4.5388
-        when letter = "D"
-            freq_score += 3.3844
-        when letter = "E"
-            freq_score += 11.1607
-        when letter = "F"
-            freq_score += 1.8121
-        when letter = "G"
-            freq_score += 2.4705
-        when letter = "H"
-            freq_score += 3.0034
-        when letter = "I"
-            freq_score += 7.5448
-        when letter = "J"
-            freq_score += 0.1965
-        when letter = "K"
-            freq_score += 1.1016
-        when letter = "L"
-            freq_score += 5.4893
-        when letter = "M"
-            freq_score += 3.0129
-        when letter = "N"
-            freq_score += 6.6544
-        when letter = "O"
-            freq_score += 7.1635
-        when letter = "P"
-            freq_score += 3.1671
-        when letter = "Q"
-            freq_score += 0.1962
-        when letter = "R"
-            freq_score += 7.5809
-        when letter = "S"
-            freq_score += 5.7351
-        when letter = "T"
-            freq_score += 6.9509
-        when letter = "U"
-            freq_score += 3.6308
-        when letter = "V"
-            freq_score += 1.0074
-        when letter = "W"
-            freq_score += 1.2899
-        when letter = "X"
-            freq_score += 0.2902
-        when letter = "Y"
-            freq_score += 1.7779
-        when letter = "Z"
-            freq_score += 0.2722
-        end
+        freq_score += score_hash[letter]
     end
     freq_score
+end
+
+# takes a string of yellow and green letters, determines a freq score, iterates through five_letter_words, 
+def adjust_freq_score(knownLetters,wordsAndScores)
+    knownLetterScore = freq_score(knownLetters.join)
+    wordsAndScores.keys.each do |word|
+        if wordsAndScores[word] != 0
+            wordsAndScores[word] = freq_score(word) - knownLetterScore
+        end
+    end
 end
 
 # Takes a word, returns a nested array with letter-color pairs: "ABC" => [["A","green"],["B","yellow"],["C","gray"]]
@@ -100,8 +85,8 @@ def filter(guesses,wordsAndScores)
             elsif letterClue.last == "yellow"
                 yellowLetters[index].push letterClue.first
                 yellowLetters[index].uniq!
-            elsif letterClue.last == "green"
-                greenLetters[index].push letterClue.first
+            elsif letterClue.last == "green" 
+                greenLetters[index].push letterClue.first unless greenLetters[index].empty? == false
                 greenLetters[index].uniq!
             end
         end

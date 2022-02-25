@@ -13,13 +13,13 @@ suggestions = no_repeat_letters.sort_by(&:last)
 
 
 # 1st Recommendation
--3.upto(-1) {|n| puts suggestions[n].first }
+-10.upto(-1) {|n| puts "#{suggestions[n].first} => #{suggestions[n].last}" }
 
 # 1st Guess Clues
-while greenLetters.join.length < 5 && guesses.keys.length < 6
+while greenLetters.join.length < 5 #&& guesses.keys.length < 6
     if guesses.keys.length > 0
         suggestions = wordsAndScores.sort_by(&:last)
-        -3.upto(-1) {|n| puts suggestions[n].first }
+        -10.upto(-1) {|n| puts "#{suggestions[n].first} => #{suggestions[n].last}" }
     end
 
     word = getString("Please enter your guess").upcase
