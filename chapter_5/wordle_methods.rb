@@ -1,3 +1,37 @@
+# In an attempt to clean up my code, I'll be describing my strategies and working solutions here.
+
+# Wordle Methods:
+    # contains all the useful methods for the Wordle strategy programs
+
+# wordle_letter_freq_strategy.rb
+    # Basic Strategy:
+        # figures out the most frequently used letters
+        # assigns a score to each word based on how popular the letters are in the word
+        # initial N suggestions only suggest words with no repeating letters
+        # subsequent suggestions based on clues and letter frequency
+    
+    # Further Research:
+        # how effective is the non-repeating letters aspect?
+        # Automate the guessing process with clues  
+
+# wordle_letter_index_freq_strategy.rb
+    # Basic Strategy:
+        # Figure out most frequently used letters in each index
+        # sort words by that
+    # Further Research:
+        # Is this more effective at recommending than the others?
+
+# wordle_solve_entire_dictionary.rb
+    # Basic Strategy:
+        # work through each word as the mystery word
+        # assign score to starting word based on average no. of guesses
+    # Considerations:
+        # This is going to be a processing-intensive project
+        # Save the results in a new file for later access
+        
+
+
+
 require '../useful_methods.rb'
 
 # Takes a word, returns a value based on the frequency of the letters' use overall
